@@ -27,9 +27,9 @@ public class DeleteActivity extends AppCompatActivity {
 
     public void onClick(View v) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Query applesQuery = ref.child("TEst").orderByChild("ReadingTest");
+        Query readingQuery = ref.child("Test_User").orderByChild("Reading1");
 
-        applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        readingQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snap: dataSnapshot.getChildren()) {
