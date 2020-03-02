@@ -3,6 +3,8 @@ package com.example.assignment_2;
 public class User {
     private String name;
     private Float systolic;
+    private Float diastolic;
+    private String condition;
 
     public String getName() {
         return name;
@@ -36,6 +38,4 @@ public class User {
         this.condition = condition;
     }
 
-    private Float diastolic;
-    private String condition;
 }
