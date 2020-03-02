@@ -52,4 +52,10 @@
         android:autofillHints="Diastolic Reading"
         android:hint="@string/diastolic_label"/>
 
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_button_label" />
+
 </LinearLayout>
