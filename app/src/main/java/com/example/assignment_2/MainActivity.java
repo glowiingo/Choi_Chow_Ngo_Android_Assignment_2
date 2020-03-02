@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         String phno = personalHealthCareNo.getText().toString().trim();
 
-        dbref = FirebaseDatabase.getInstance().getReference().child(phno);
+        dbref = FirebaseDatabase.getInstance().getReference();
         user = new User();
         reading = new Reading();
         saveButton.setOnClickListener(new View.OnClickListener() {
