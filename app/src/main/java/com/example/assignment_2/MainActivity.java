@@ -50,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 user.setName(name);
                 reading.setSystolic(systolic);
                 reading.setDiastolic(diastolic);
+                user.getReadings().put("Reading", reading);
 
-                dbref.push().setValue(reading);
+                dbref.push().setValue(user);
             }
         });
     }

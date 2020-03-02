@@ -6,7 +6,7 @@ import java.util.Map;
 public class User {
 
     private String personalHealthCareNo;
-    private String name;
+    private String Name;
 
     Map<String, Reading> Readings = new HashMap<>();
 
@@ -18,11 +18,11 @@ public class User {
         this.personalHealthCareNo = personalHealthCareNo;
     }
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public Map<String, Reading> getReadings() {
