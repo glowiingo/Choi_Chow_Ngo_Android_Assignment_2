@@ -8,6 +8,21 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/personal_healthcare_no_txt_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/phno" />
+
+    <EditText
+        android:id="@+id/personal_healthcare_no_input"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:autofillHints="Name"
+        android:ems="10"
+        android:hint="@string/phno"
+        android:inputType="textPersonName" />
+
+    <TextView
         android:id="@+id/name_txt_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,13 +44,13 @@
         android:text="@string/systolic_label" />
 
     <EditText
-        android:id="@+id/systolic-reading"
+        android:id="@+id/systolic_reading"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:autofillHints="Systolic Reading"
-        android:hint="@string/systolic_label"/>
+        android:ems="10"
+        android:hint="@string/systolic_label"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/diastolic_txt_view"
@@ -44,12 +59,24 @@
         android:text="@string/diastolic_label" />
 
     <EditText
-        android:id="@+id/diastolic-reading"
+        android:id="@+id/diastolic_reading"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:autofillHints="Diastolic Reading"
         android:hint="@string/diastolic_label"/>
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_button_label" />
+
+    <Button
+        android:id="@+id/go_to_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_button_label" />
 
 </LinearLayout>
