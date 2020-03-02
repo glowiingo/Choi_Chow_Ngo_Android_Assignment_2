@@ -3,6 +3,7 @@ package com.example.assignment_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
         dbref = FirebaseDatabase.getInstance().getReference().child("User");
         user = new User();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 }
