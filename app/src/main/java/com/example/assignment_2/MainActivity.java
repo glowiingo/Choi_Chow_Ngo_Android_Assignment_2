@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Define variables
     DatabaseReference dbref;
+    User user;
     Reading reading;
     Float systolic;
     Float diastolic;
@@ -26,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
         final EditText name_edit_txt = (EditText) findViewById(R.id.name);
         final EditText systolic_input = (EditText) findViewById(R.id.systolic_reading);
         final EditText diastolic_input = (EditText) findViewById(R.id.diastolic_reading);
+        final EditText personalHealthCareNo = (EditText) findViewById(R.id.personal_healthcare_no_input);
         Button saveButton = (Button) findViewById(R.id.save_button);
-        String name = name_edit_txt.getText().toString().trim();
 
-        dbref = FirebaseDatabase.getInstance().getReference().child(name);
+        String phno = personalHealthCareNo.getText().toString().trim();
+
+        dbref = FirebaseDatabase.getInstance().getReference().child(phno);
+        user = new User();
         reading = new Reading();
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
                 String name = name_edit_txt.getText().toString().trim();
-                reading.setName(name);
+                user.setName(name);
                 reading.setSystolic(systolic);
                 reading.setDiastolic(diastolic);
 

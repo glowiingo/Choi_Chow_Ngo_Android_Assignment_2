@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Choi_Chow_Ngo_Assignment_2</string>
+    <string name="db_main">android-assign-2-bp-reading</string>
     <string name="date_label">Date Insert</string>
     <string name="name_label">Name</string>
+    <string name="phno">Personal HealthCare No</string>
     <string name="systolic_label">Systolic Reading</string>
     <string name="diastolic_label">Diastolic Reading</string>
     <string name="save_button_label">Save</string>
+    <string name="delete_button_label">Go_To_Delete</string>
 </resources>

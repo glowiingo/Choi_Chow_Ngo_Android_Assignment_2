@@ -1,18 +1,10 @@
 package com.example.assignment_2;
 
 public class Reading {
-    private String name;
     private Float systolic;
     private Float diastolic;
     private String condition;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String date;
 
     public Float getSystolic() {
         return systolic;
