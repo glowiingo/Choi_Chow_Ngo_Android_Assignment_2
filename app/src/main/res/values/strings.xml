@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Assignment_2</string>
+    <string name="date_insert">Date Insert</string>
+    <string name="name_insert">Name Insert</string>
+    <string name="systolic_insert">Systolic Insert</string>
+    <string name="diastolic_insert">Diastolic Insert</string>
 </resources>
