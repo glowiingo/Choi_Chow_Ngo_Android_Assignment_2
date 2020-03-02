@@ -2,6 +2,7 @@ package com.example.assignment_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 dbref.push().setValue(reading);
             }
         });
-
+    }
+    public void onClick(View v) {
+        Intent i = new Intent(this, DeleteActivity.class);
+        startActivity(i);
     }
 }
