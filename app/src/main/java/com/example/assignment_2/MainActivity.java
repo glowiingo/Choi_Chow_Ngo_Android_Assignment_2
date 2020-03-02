@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Define variables
     DatabaseReference dbref;
-    User user;
+    Reading reading;
     Float systolic;
     Float diastolic;
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         String name = name_edit_txt.getText().toString().trim();
 
         dbref = FirebaseDatabase.getInstance().getReference().child(name);
-        user = new User();
+        reading = new Reading();
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 String name = name_edit_txt.getText().toString().trim();
-                user.setName(name);
-                user.setSystolic(systolic);
-                user.setDiastolic(diastolic);
+                reading.setName(name);
+                reading.setSystolic(systolic);
+                reading.setDiastolic(diastolic);
 
-                dbref.push().setValue(user);
+                dbref.push().setValue(reading);
             }
         });
 
