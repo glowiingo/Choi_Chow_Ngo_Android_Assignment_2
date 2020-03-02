@@ -11,39 +11,45 @@
         android:id="@+id/name_txt_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/name_insert" />
+        android:text="@string/name_label" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:autofillHints="Name"
+        android:hint="@string/name_label" />
 
     <TextView
-        android:id="@+id/diastolic_txt_view"
+        android:id="@+id/systolic_txt_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/diastolic_insert" />
+        android:text="@string/systolic_label" />
 
     <EditText
         android:id="@+id/systolic-reading"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:autofillHints="Systolic Reading"
+        android:hint="@string/systolic_label"/>
 
     <TextView
-        android:id="@+id/systolic_txt_view"
+        android:id="@+id/diastolic_txt_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/systolic_insert" />
+        android:text="@string/diastolic_label" />
 
     <EditText
         android:id="@+id/diastolic-reading"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:autofillHints="Diastolic Reading"
+        android:hint="@string/diastolic_label"/>
 
 </LinearLayout>
