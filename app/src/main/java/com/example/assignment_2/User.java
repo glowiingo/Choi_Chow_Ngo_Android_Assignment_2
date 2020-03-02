@@ -16,4 +16,7 @@ public class User {
         this.name = name;
     }
 
+    public Map<String, Reading> getReadings() {
+        return Readings;
+    }
 }

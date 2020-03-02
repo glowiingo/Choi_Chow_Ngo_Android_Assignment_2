@@ -59,4 +59,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, DeleteActivity.class);
         startActivity(i);
     }
+
+    public void onListViewClick(View v) {
+        Intent i = new Intent(this, ListActivity.class);
+        startActivity(i);
+    }
 }
