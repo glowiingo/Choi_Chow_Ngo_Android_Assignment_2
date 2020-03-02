@@ -4,4 +4,7 @@
     <string name="name_label">Name</string>
     <string name="systolic_label">Systolic Reading</string>
     <string name="diastolic_label">Diastolic Reading</string>
+    <string-array name ="users">
+        <item>test1</item>
+    </string-array>
 </resources>
