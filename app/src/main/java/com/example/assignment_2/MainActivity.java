@@ -57,10 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
                 String Name = name_edit_txt.getText().toString().trim();
                 String phno = personalHealthCareNo.getText().toString().trim();
+                Reading.setSystolic(systolic);
+                Reading.setDiastolic(diastolic);
 
-                Map<String, User> users = new HashMap<>();
+                String condition = Reading.determineCondition(systolic, diastolic);
+                Reading.setCondition(condition);
 
-                String postKey = userRef.push().getKey();
                 DatabaseReference phnoRef = userRef.child('/' + phno + '/' + Name + '/');
                 phnoRef.push().setValue(Reading);
             }
