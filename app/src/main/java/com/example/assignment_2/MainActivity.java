@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,23 +48,82 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                try {
-                    systolic = Float.parseFloat(systolic_input.getText().toString().trim());
-                    diastolic = Float.parseFloat(diastolic_input.getText().toString().trim());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
                 String Name = name_edit_txt.getText().toString().trim();
                 String phno = personalHealthCareNo.getText().toString().trim();
-                Reading.setSystolic(systolic);
-                Reading.setDiastolic(diastolic);
+                String diastolic_string = diastolic_input.getText().toString().trim();
+                String systolic_string = systolic_input.getText().toString().trim();
 
-                String condition = Reading.determineCondition(systolic, diastolic);
-                Reading.setCondition(condition);
+                if (!phno.equals("") &&
+                        !Name.equals("") &&
+                        !diastolic_string.equals("") &&
+                        !systolic_string.equals("")) {
 
-                DatabaseReference phnoRef = userRef.child('/' + phno + '/' + Name + '/');
-                phnoRef.push().setValue(Reading);
+                    try {
+                        systolic = Float.parseFloat(systolic_string);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Please enter a proper systolic numeric value.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    try {
+                        diastolic = Float.parseFloat(diastolic_string);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Please enter a proper diastolic numeric value.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (diastolic != null && systolic != null) {
+                        Reading.setSystolic(systolic);
+                        Reading.setDiastolic(diastolic);
+
+                        String condition = Reading.determineCondition(systolic, diastolic);
+                        Reading.setCondition(condition);
+
+                        DatabaseReference phnoRef = userRef.child('/' + phno + '-' + Name + '/');
+                        phnoRef.push().setValue(Reading);
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Information successfully added to the database.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (phno.equals("")
+                        || phno.contains(".")
+                        || phno.contains("#")
+                        || phno.contains("$")
+                        || phno.contains("[")
+                        || phno.contains("]")) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Please enter a properly formatted unique Personal HealthCare Number.",
+                            Toast.LENGTH_SHORT).show();
+
+                } else if (Name.equals("")
+                        || Name.contains(".")
+                        || Name.contains("#")
+                        || Name.contains("$")
+                        || Name.contains("[")
+                        || Name.contains("]")) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Please enter a properly formatted name.",
+                            Toast.LENGTH_SHORT).show();
+
+                } else if (diastolic_string.equals("")) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Please enter proper a diastolic value.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Please enter a proper systolic value.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
