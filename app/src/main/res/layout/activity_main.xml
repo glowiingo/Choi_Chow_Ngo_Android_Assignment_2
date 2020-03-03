@@ -77,6 +77,14 @@
         android:id="@+id/go_to_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/delete_button_label" />
+        android:text="@string/delete_button_label"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/list_view_button"
+        android:onClick="onListViewClick"/>
 
 </LinearLayout>

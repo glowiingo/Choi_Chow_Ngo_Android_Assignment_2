@@ -4,16 +4,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class User {
-    private int personalHealthCareNo;
-    private String name;
+
+    private String personalHealthCareNo;
+    private String Name;
+
     Map<String, Reading> Readings = new HashMap<>();
 
+    public String getPersonalHealthCareNo() {
+        return personalHealthCareNo;
+    }
+
+    public void setPersonalHealthCareNo(String personalHealthCareNo) {
+        this.personalHealthCareNo = personalHealthCareNo;
+    }
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
+    }
+
+    public Map<String, Reading> getReadings() {
+        return Readings;
+    }
+
+    public void setReadings(Map<String, Reading> readings) {
+        Readings = readings;
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.assignment_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,12 +11,17 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     // Define variables
-    DatabaseReference dbref;
+    DatabaseReference userRef;
     User user;
-    Reading reading;
+    Reading Reading;
     Float systolic;
     Float diastolic;
 
@@ -29,12 +35,13 @@ public class MainActivity extends AppCompatActivity {
         final EditText diastolic_input = (EditText) findViewById(R.id.diastolic_reading);
         final EditText personalHealthCareNo = (EditText) findViewById(R.id.personal_healthcare_no_input);
         Button saveButton = (Button) findViewById(R.id.save_button);
+        String Name = name_edit_txt.getText().toString().trim();
 
-        String phno = personalHealthCareNo.getText().toString().trim();
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        dbref = FirebaseDatabase.getInstance().getReference().child(phno);
         user = new User();
-        reading = new Reading();
+        Reading = new Reading();
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,14 +52,30 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                String name = name_edit_txt.getText().toString().trim();
-                user.setName(name);
-                reading.setSystolic(systolic);
-                reading.setDiastolic(diastolic);
+                String Name = name_edit_txt.getText().toString().trim();
+                String phno = personalHealthCareNo.getText().toString().trim();
 
-                dbref.push().setValue(reading);
+                user.setName(Name);
+                Reading.setSystolic(systolic);
+                Reading.setDiastolic(diastolic);
+                user.getReadings().put("Reading", Reading);
+
+                Map<String, User> users = new HashMap<>();
+                users.put(phno, user);
+
+                String postKey = userRef.push().getKey();
+                DatabaseReference phnoRef = userRef.child('/' + phno + '/' + Name + '/');
+                phnoRef.push().setValue(users);
             }
         });
+    }
+    public void onClick(View v) {
+        Intent i = new Intent(this, DeleteActivity.class);
+        startActivity(i);
+    }
 
+    public void onListViewClick(View v) {
+        Intent i = new Intent(this, ListActivity.class);
+        startActivity(i);
     }
 }
