@@ -63,15 +63,15 @@ public class ListUsersActivity extends AppCompatActivity {
             JSONObject jsonUserObject = (JSONObject) jsonDBObject.get("Users");
             JSONArray userJsonArray = jsonUserObject.names();
             assert userJsonArray != null;
-            Log.i("Error", userJsonArray.toString());
+            // Log.i("Error", userJsonArray.toString());
             listLength = userJsonArray.length();
             List<String> articleTitleList = new ArrayList<>(listLength);
             for (int i = 0; i < userJsonArray.length(); i++) {
                 String user = userJsonArray.get(i).toString();
                 articleTitleList.add(user);
             }
-            ListView suggestions = findViewById(R.id.list_of_user);
-            suggestions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, articleTitleList));
+            ListView users = findViewById(R.id.list_of_user);
+            users.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, articleTitleList));
         } catch (JSONException e) {
             Log.e("Article Conversion: ", e.toString());
         }
