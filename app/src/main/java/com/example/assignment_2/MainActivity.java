@@ -4,10 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getName();
+    private JSONObject jsonDBObject;
+    private String url = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
     public void add_intent(View v) {
         Intent i = new Intent(this, AddPatientActivity.class);
         startActivity(i);
@@ -49,7 +65,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void list_intent(View v) {
-        Intent i = new Intent(this, ListActivity.class);
-        startActivity(i);
+        url = this.getResources().getString(R.string.users_db_json_url);
+        sendAndRequestResponse();
+
+    }
+
+    private void sendAndRequestResponse() {
+        //RequestQueue initialized
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
+
+        //String Request initialized
+        JsonObjectRequest mJsonRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                jsonDBObject = response;
+                Intent intentSuggestions = new Intent(MainActivity.this, ListUsersActivity.class);
+                intentSuggestions.putExtra("jsonString", jsonDBObject.toString());
+                startActivity(intentSuggestions);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "Error :" + error.toString());
+            }
+        });
+        mRequestQueue.add(mJsonRequest);
     }
 }
