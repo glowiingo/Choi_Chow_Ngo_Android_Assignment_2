@@ -1,8 +1,10 @@
 package com.example.assignment_2;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Reading = new Reading();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 try {
@@ -55,17 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 String Name = name_edit_txt.getText().toString().trim();
                 String phno = personalHealthCareNo.getText().toString().trim();
 
-                user.setName(Name);
-                Reading.setSystolic(systolic);
-                Reading.setDiastolic(diastolic);
-                user.getReadings().put("Reading", Reading);
-
                 Map<String, User> users = new HashMap<>();
-                users.put(phno, user);
 
                 String postKey = userRef.push().getKey();
                 DatabaseReference phnoRef = userRef.child('/' + phno + '/' + Name + '/');
-                phnoRef.push().setValue(users);
+                phnoRef.push().setValue(Reading);
             }
         });
     }
