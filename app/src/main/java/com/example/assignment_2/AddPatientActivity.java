@@ -3,6 +3,7 @@ package com.example.assignment_2;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ public class AddPatientActivity extends AppCompatActivity {
     Reading Reading;
     Float systolic;
     Float diastolic;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,10 @@ public class AddPatientActivity extends AppCompatActivity {
         final EditText diastolic_input = (EditText) findViewById(R.id.diastolic_reading);
         final EditText personalHealthCareNo = (EditText) findViewById(R.id.personal_healthcare_no_input);
         Button saveButton = (Button) findViewById(R.id.save_button);
-        String Name = name_edit_txt.getText().toString().trim();
 
-        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        final String user_db_key = context.getResources().getString(R.string.users_db_key);
+
+        userRef = FirebaseDatabase.getInstance().getReference().child(user_db_key);
 
         user = new User();
         Reading = new Reading();
@@ -59,7 +62,7 @@ public class AddPatientActivity extends AppCompatActivity {
                     } catch (NumberFormatException e) {
                         Toast.makeText(
                                 getApplicationContext(),
-                                "Please enter a proper systolic numeric value.",
+                                context.getResources().getString(R.string.systolic_error),
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -68,7 +71,7 @@ public class AddPatientActivity extends AppCompatActivity {
                     } catch (NumberFormatException e) {
                         Toast.makeText(
                                 getApplicationContext(),
-                                "Please enter a proper diastolic numeric value.",
+                                context.getResources().getString(R.string.diastolic_error),
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -83,7 +86,7 @@ public class AddPatientActivity extends AppCompatActivity {
                         phnoRef.push().setValue(Reading);
                         Toast.makeText(
                                 getApplicationContext(),
-                                "Information successfully added to the database.",
+                                context.getResources().getString(R.string.add_db_reading_succes),
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -95,7 +98,7 @@ public class AddPatientActivity extends AppCompatActivity {
                         || phno.contains("]")) {
                     Toast.makeText(
                             getApplicationContext(),
-                            "Please enter a properly formatted unique Personal HealthCare Number.",
+                            context.getResources().getString(R.string.phno_error),
                             Toast.LENGTH_SHORT).show();
 
                 } else if (Name.equals("")
@@ -106,18 +109,18 @@ public class AddPatientActivity extends AppCompatActivity {
                         || Name.contains("]")) {
                     Toast.makeText(
                             getApplicationContext(),
-                            "Please enter a properly formatted name.",
+                            context.getResources().getString(R.string.name_error),
                             Toast.LENGTH_SHORT).show();
 
                 } else if (diastolic_string.equals("")) {
                     Toast.makeText(
                             getApplicationContext(),
-                            "Please enter proper a diastolic value.",
+                            context.getResources().getString(R.string.diastolic_error),
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
-                            "Please enter a proper systolic value.",
+                            context.getResources().getString(R.string.systolic_error),
                             Toast.LENGTH_SHORT).show();
                 }
             }

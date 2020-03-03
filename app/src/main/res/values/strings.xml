@@ -10,4 +10,13 @@
     <string name="delete_button_label">Go_To_Delete</string>
     <string name="list_view_button">Go_To_ListView</string>
     <string name="add_reading_button">Add New Reading</string>
+
+    <string name="users_db_key">Users</string>
+
+    <string name="diastolic_error">Please enter proper a diastolic numeric value.</string>
+    <string name="systolic_error">Please enter a proper systolic numeric value.</string>
+    <string name="phno_error">Please enter a properly formatted unique Personal HealthCare Number.</string>
+    <string name="name_error">Please enter a properly formatted name.</string>
+
+    <string name="add_db_reading_succes">Information successfully added to the database.</string>
 </resources>
