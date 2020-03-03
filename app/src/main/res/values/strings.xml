@@ -9,4 +9,5 @@
     <string name="save_button_label">Save</string>
     <string name="delete_button_label">Go_To_Delete</string>
     <string name="list_view_button">Go_To_ListView</string>
+    <string name="add_reading_button">Add New Reading</string>
 </resources>

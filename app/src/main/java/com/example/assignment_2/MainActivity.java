@@ -20,119 +20,46 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Define variables
-    DatabaseReference userRef;
-    User user;
-    Reading Reading;
-    Float systolic;
-    Float diastolic;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Button addReading = (Button) findViewById(R.id.add_reading);
+        Button deleteButton = (Button) findViewById(R.id.go_to_delete);
+        Button listButton = (Button) findViewById(R.id.go_to_list);
 
-        final EditText name_edit_txt = (EditText) findViewById(R.id.name);
-        final EditText systolic_input = (EditText) findViewById(R.id.systolic_reading);
-        final EditText diastolic_input = (EditText) findViewById(R.id.diastolic_reading);
-        final EditText personalHealthCareNo = (EditText) findViewById(R.id.personal_healthcare_no_input);
-        Button saveButton = (Button) findViewById(R.id.save_button);
-        String Name = name_edit_txt.getText().toString().trim();
-
-        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
-        user = new User();
-        Reading = new Reading();
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
+        addReading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Name = name_edit_txt.getText().toString().trim();
-                String phno = personalHealthCareNo.getText().toString().trim();
-                String diastolic_string = diastolic_input.getText().toString().trim();
-                String systolic_string = systolic_input.getText().toString().trim();
+                add_intent(v);
+            }
+        });
 
-                if (!phno.equals("") &&
-                        !Name.equals("") &&
-                        !diastolic_string.equals("") &&
-                        !systolic_string.equals("")) {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete_intent(v);
+            }
+        });
 
-                    try {
-                        systolic = Float.parseFloat(systolic_string);
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Please enter a proper systolic numeric value.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    try {
-                        diastolic = Float.parseFloat(diastolic_string);
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Please enter a proper diastolic numeric value.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    if (diastolic != null && systolic != null) {
-                        Reading.setSystolic(systolic);
-                        Reading.setDiastolic(diastolic);
-
-                        String condition = Reading.determineCondition(systolic, diastolic);
-                        Reading.setCondition(condition);
-
-                        DatabaseReference phnoRef = userRef.child('/' + phno + '-' + Name + '/');
-                        phnoRef.push().setValue(Reading);
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Information successfully added to the database.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                } else if (phno.equals("")
-                        || phno.contains(".")
-                        || phno.contains("#")
-                        || phno.contains("$")
-                        || phno.contains("[")
-                        || phno.contains("]")) {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Please enter a properly formatted unique Personal HealthCare Number.",
-                            Toast.LENGTH_SHORT).show();
-
-                } else if (Name.equals("")
-                        || Name.contains(".")
-                        || Name.contains("#")
-                        || Name.contains("$")
-                        || Name.contains("[")
-                        || Name.contains("]")) {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Please enter a properly formatted name.",
-                            Toast.LENGTH_SHORT).show();
-
-                } else if (diastolic_string.equals("")) {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Please enter proper a diastolic value.",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Please enter a proper systolic value.",
-                            Toast.LENGTH_SHORT).show();
-                }
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list_intent(v);
             }
         });
     }
-    public void onClick(View v) {
+    public void add_intent(View v) {
+        Intent i = new Intent(this, AddPatientActivity.class);
+        startActivity(i);
+    }
+
+    public void delete_intent(View v) {
         Intent i = new Intent(this, DeleteActivity.class);
         startActivity(i);
     }
 
-    public void onListViewClick(View v) {
+    public void list_intent(View v) {
         Intent i = new Intent(this, ListActivity.class);
         startActivity(i);
     }
