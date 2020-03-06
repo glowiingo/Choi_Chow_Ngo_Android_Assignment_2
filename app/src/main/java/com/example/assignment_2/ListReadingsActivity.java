@@ -41,16 +41,16 @@ public class ListReadingsActivity extends AppCompatActivity {
         }
         populatePage();
 
-
+        // Listener for ListReadings to display ReadingDetailsActivity
         ListView userListView = findViewById(R.id.list_of_reading);
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
                 if (i >= 0 && i < listLength) {
-                    Intent listReadingsIntent = new Intent(ListReadingsActivity.this, ListReadingsActivity.class);
-                    listReadingsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.jsonReadings), userReadings.toString());
-                    listReadingsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.index), i);
-                    startActivity(listReadingsIntent);
+                    Intent readingDetailsIntent = new Intent(ListReadingsActivity.this, ReadingDetailsActivity.class);
+                    readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.jsonReadings), userReadings.toString());
+                    readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.index), i);
+                    startActivity(readingDetailsIntent);
                 }
             }
         });

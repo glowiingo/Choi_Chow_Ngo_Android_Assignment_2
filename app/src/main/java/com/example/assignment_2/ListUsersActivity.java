@@ -44,6 +44,7 @@ public class ListUsersActivity extends AppCompatActivity {
         }
         populatePage();
 
+        // ListView listener for ListUsers to start ListReadings
         ListView userListView = findViewById(R.id.list_of_user);
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
