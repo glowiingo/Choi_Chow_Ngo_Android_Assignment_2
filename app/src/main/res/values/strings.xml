@@ -33,7 +33,7 @@
     <string name="ok">OK</string>
     <string name="delete_reading_button_label">Delete</string>
     <string name="edit_reading_button_label">Edit</string>
-    
+
     <string name="condition_key">condition</string>
     <string name="date_key">date</string>
     <string name="diastolic_key">diastolic</string>
