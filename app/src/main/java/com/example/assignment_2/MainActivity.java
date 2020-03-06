@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         final Button addReading = (Button) findViewById(R.id.add_reading);
         Button deleteButton = (Button) findViewById(R.id.go_to_delete);
         Button listButton = (Button) findViewById(R.id.go_to_list);
+        Button averageButton = (Button) findViewById(R.id.average_button);
+
 
         addReading.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +53,20 @@ public class MainActivity extends AppCompatActivity {
                 list_intent(v);
             }
         });
+
+        averageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                average_intent(v);
+            }
+        });
+
     }
 
+    private void average_intent(View v) {
+        Intent i = new Intent(this, AverageReadings.class);
+        startActivity(i);
+    }
 
     public void add_intent(View v) {
         Intent i = new Intent(this, AddPatientActivity.class);

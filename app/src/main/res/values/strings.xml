@@ -13,6 +13,8 @@
     <string name="list_view_button">Go_To_ListView</string>
     <string name="add_reading_button">Add New Reading</string>
     <string name="username">username</string>
+    <string name="go_to_average">Average Readings</string>
+
 
     <string name="users_db_key">Users</string>
     <string name="users_db_json_url">https://android-assign-2-bp-reading.firebaseio.com/.json</string>
@@ -33,10 +35,19 @@
 
     <string name="delete_reading_button_label">Delete</string>
     <string name="edit_reading_button_label">Edit</string>
-    
+
     <string name="condition_key">condition</string>
     <string name="date_key">date</string>
     <string name="diastolic_key">diastolic</string>
     <string name="systolic_key">systolic</string>
     <string name="time_key">time</string>
+    <string name="title_activity_average_readings">AverageReadings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

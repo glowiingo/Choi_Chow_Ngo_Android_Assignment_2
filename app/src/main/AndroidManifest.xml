@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReadingDetailsActivity"></activity>
+        <activity
+            android:name=".AverageReadings"
+            android:label="@string/title_activity_average_readings"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ReadingDetailsActivity" />
         <activity android:name=".ListReadingsActivity" />
         <activity android:name=".AddPatientActivity" />
         <activity android:name=".ListUsersActivity" />
