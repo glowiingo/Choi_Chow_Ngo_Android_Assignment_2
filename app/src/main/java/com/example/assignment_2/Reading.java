@@ -1,5 +1,6 @@
 package com.example.assignment_2;
 import android.os.Build;
+import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
@@ -15,6 +16,7 @@ public class Reading {
     private String condition;
     private String date;
     private String time;
+    private HypertensiveFragment hf = new HypertensiveFragment();
 
     public Float getSystolic() {
         return systolic;

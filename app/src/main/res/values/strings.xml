@@ -20,4 +20,5 @@
     <string name="name_error">Please enter a properly formatted name.</string>
 
     <string name="add_db_reading_succes">Information successfully added to the database.</string>
+    <string name="cancel_alertDialog">Cancel</string>
 </resources>
