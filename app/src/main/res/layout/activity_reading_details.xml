@@ -43,13 +43,13 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/reading_edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/edit_reading_button_label" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/reading_delete_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/delete_reading_button_label" />

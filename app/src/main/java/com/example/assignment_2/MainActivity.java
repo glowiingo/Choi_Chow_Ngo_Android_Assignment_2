@@ -28,20 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Button addReading = (Button) findViewById(R.id.add_reading);
-        Button deleteButton = (Button) findViewById(R.id.go_to_delete);
         Button listButton = (Button) findViewById(R.id.go_to_list);
 
         addReading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add_intent(v);
-            }
-        });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                delete_intent(v);
             }
         });
 
@@ -56,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void add_intent(View v) {
         Intent i = new Intent(this, AddPatientActivity.class);
-        startActivity(i);
-    }
-
-    public void delete_intent(View v) {
-        Intent i = new Intent(this, DeleteActivity.class);
         startActivity(i);
     }
 

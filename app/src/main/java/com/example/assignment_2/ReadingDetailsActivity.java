@@ -1,9 +1,21 @@
 package com.example.assignment_2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,10 +24,14 @@ import java.util.Objects;
 
 public class ReadingDetailsActivity extends AppCompatActivity {
 
+    // Define variables
+    DatabaseReference ref;
+
     private JSONObject jsonReadingsObject;
     private int readingIndex = -1;
     private JSONObject jsonReading;
     private String userName;
+    private String readingID;
     String date = "";
     String time = "";
     String condition = "";
@@ -27,10 +43,14 @@ public class ReadingDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_details);
 
+        final String user_db_key = this.getResources().getString(R.string.users_db_key);
+        final String delete_tag = this.getResources().getString(R.string.delete_reading_button_label);
+
         String jsonReadingsObjectString = "";
         jsonReadingsObjectString = (String) Objects.requireNonNull(getIntent().getExtras()).get(this.getResources().getString(R.string.jsonReadings));
         readingIndex = (int) getIntent().getExtras().get(this.getResources().getString(R.string.index));
         userName = (String) getIntent().getExtras().get(this.getResources().getString(R.string.username));
+        assert userName != null;
         String[] username = userName.split("-", 2);
         String phno = username[0];
         String name = username[1];
@@ -72,6 +92,42 @@ public class ReadingDetailsActivity extends AppCompatActivity {
         TextView conditionTextView = (TextView) findViewById(R.id.conditionTextView);
         String conditionTextViewText = this.getResources().getString(R.string.condition_label) + condition;
         conditionTextView.setText(conditionTextViewText);
+
+        Button deleteButton = (Button) findViewById(R.id.reading_delete_button);
+        Button editButton = (Button) findViewById(R.id.reading_edit_button);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // delete node from firebase
+                ref = FirebaseDatabase.getInstance().getReference();
+                Query readingQuery = ref.child(user_db_key).child(userName).child(readingID);
+                readingQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snap: dataSnapshot.getChildren()) {
+                            snap.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e(delete_tag, delete_tag, databaseError.toException());
+                    }
+                });
+
+                Intent backToMainIntent = new Intent(ReadingDetailsActivity.this, MainActivity.class);
+                startActivity(backToMainIntent);
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // go to new ui activity to input new data
+
+            }
+        });
     }
 
     public void populatePage() {
@@ -79,7 +135,7 @@ public class ReadingDetailsActivity extends AppCompatActivity {
         try {
             JSONArray readingKeysList = jsonReadingsObject.names();
             assert readingKeysList != null;
-            String readingID = readingKeysList.get(readingIndex).toString();
+            readingID = readingKeysList.get(readingIndex).toString();
             Log.i("ReadingID: ", readingID);
             jsonReading = jsonReadingsObject.getJSONObject(readingID);
             Log.i("ReadingObject: ", jsonReading.toString());

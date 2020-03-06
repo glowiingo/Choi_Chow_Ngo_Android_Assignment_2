@@ -78,7 +78,7 @@ public class ListReadingsActivity extends AppCompatActivity {
             List<String> listOfReadings = new ArrayList<>(listLength);
             for (int i = 0; i < userReadingsArray.length(); i++) {
                 String reading = userReadingsArray.get(i).toString();
-                listOfReadings.add("Reading number " + (i + 1) + ": " + reading);
+                listOfReadings.add("ReadingID: " + reading);
             }
             ListView readingListView = findViewById(R.id.list_of_reading);
             readingListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfReadings));

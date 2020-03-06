@@ -14,12 +14,6 @@
         android:text="@string/add_reading_button"/>
 
     <Button
-        android:id="@+id/go_to_delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_button_label"/>
-
-    <Button
         android:id="@+id/go_to_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
