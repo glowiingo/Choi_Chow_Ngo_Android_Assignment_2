@@ -91,6 +91,10 @@ public class AddPatientActivity extends AppCompatActivity {
                                 getApplicationContext(),
                                 context.getResources().getString(R.string.add_db_reading_succes),
                                 Toast.LENGTH_SHORT).show();
+                        if (!status()) {
+                            Intent intentMain = new Intent(AddPatientActivity.this, MainActivity.class);
+                            startActivity(intentMain);
+                        }
                     }
 
                 } else if (phno.equals("")
@@ -126,15 +130,16 @@ public class AddPatientActivity extends AppCompatActivity {
                             context.getResources().getString(R.string.systolic_error),
                             Toast.LENGTH_SHORT).show();
                 }
-
-                status();
             }
         });
     }
-    public void status() {
+    public boolean status() {
         if(systolic >= 180 || diastolic >= 120) {
             hf = new HypertensiveFragment();
             hf.show(getSupportFragmentManager(), "Dialog");
+            return true;
+        } else {
+            return false;
         }
     }
 }
