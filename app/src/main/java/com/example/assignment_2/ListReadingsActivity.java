@@ -16,13 +16,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListReadingsActivity extends AppCompatActivity {
 
     private JSONObject jsonUsersObject;
     private int listLength = 0;
     private int userIndex = -1;
-    private List<String> listOfReadings;
     private JSONObject userReadings;
 
     @Override
@@ -31,9 +31,10 @@ public class ListReadingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_readings);
 
         String jsonUserObjectString = "";
-        jsonUserObjectString = (String) getIntent().getExtras().get(this.getResources().getString(R.string.jsonUsers));
+        jsonUserObjectString = (String) Objects.requireNonNull(getIntent().getExtras()).get(this.getResources().getString(R.string.jsonUsers));
         userIndex = (int) getIntent().getExtras().get(this.getResources().getString(R.string.index));
         try {
+            assert jsonUserObjectString != null;
             jsonUsersObject = new JSONObject(jsonUserObjectString);
             Log.i("jsonUsersObject", jsonUserObjectString);
         } catch (JSONException e) {
@@ -49,6 +50,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                 if (i >= 0 && i < listLength) {
                     Intent readingDetailsIntent = new Intent(ListReadingsActivity.this, ReadingDetailsActivity.class);
                     readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.jsonReadings), userReadings.toString());
+                    Log.i("UserReadings: ", userReadings.toString());
                     readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.index), i);
                     startActivity(readingDetailsIntent);
                 }
@@ -70,7 +72,7 @@ public class ListReadingsActivity extends AppCompatActivity {
             assert userReadingsArray != null;
             Log.i("userReadingsArray", userReadingsArray.toString());
             listLength = userReadingsArray.length();
-            listOfReadings = new ArrayList<>(listLength);
+            List<String> listOfReadings = new ArrayList<>(listLength);
             for (int i = 0; i < userReadingsArray.length(); i++) {
                 String reading = userReadingsArray.get(i).toString();
                 listOfReadings.add("Reading number " + (i + 1) + ": " + reading);

@@ -22,12 +22,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListUsersActivity extends AppCompatActivity {
 
     private JSONObject jsonDBObject;
     private int listLength = 0;
-    private List<String> listOfUsers;
     private JSONObject jsonUsers;
 
     @Override
@@ -35,8 +35,9 @@ public class ListUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         String dbResponse = "";
-        dbResponse = (String) getIntent().getExtras().get(this.getResources().getString(R.string.jsonFullString));
+        dbResponse = (String) Objects.requireNonNull(getIntent().getExtras()).get(this.getResources().getString(R.string.jsonFullString));
         try {
+            assert dbResponse != null;
             jsonDBObject = new JSONObject(dbResponse);
             Log.i("JsonDBResponse", dbResponse);
         } catch (JSONException e) {
@@ -67,7 +68,7 @@ public class ListUsersActivity extends AppCompatActivity {
             assert userJsonArray != null;
             Log.i("UserJsonArray", userJsonArray.toString());
             listLength = userJsonArray.length();
-            listOfUsers = new ArrayList<>(listLength);
+            List<String> listOfUsers = new ArrayList<>(listLength);
             for (int i = 0; i < userJsonArray.length(); i++) {
                 String user = userJsonArray.get(i).toString();
                 listOfUsers.add(user);
