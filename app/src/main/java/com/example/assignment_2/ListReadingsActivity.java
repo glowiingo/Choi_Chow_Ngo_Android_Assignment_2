@@ -24,6 +24,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     private int listLength = 0;
     private int userIndex = -1;
     private JSONObject userReadings;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class ListReadingsActivity extends AppCompatActivity {
                 if (i >= 0 && i < listLength) {
                     Intent readingDetailsIntent = new Intent(ListReadingsActivity.this, ReadingDetailsActivity.class);
                     readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.jsonReadings), userReadings.toString());
+                    readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.username), userName);
+                    Log.i("Username", userName);
                     Log.i("UserReadings: ", userReadings.toString());
                     readingDetailsIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.index), i);
                     startActivity(readingDetailsIntent);
@@ -63,7 +66,7 @@ public class ListReadingsActivity extends AppCompatActivity {
         try {
             JSONArray userJsonArray = jsonUsersObject.names();
             assert userJsonArray != null;
-            String userName = userJsonArray.get(userIndex).toString();
+            userName = userJsonArray.get(userIndex).toString();
             Log.i("userName", userName);
 
             userReadings = (JSONObject) jsonUsersObject.get(userName);
