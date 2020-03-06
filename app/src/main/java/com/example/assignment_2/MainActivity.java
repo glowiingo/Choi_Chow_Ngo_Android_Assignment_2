@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 jsonDBObject = response;
                 Intent intentSuggestions = new Intent(MainActivity.this, ListUsersActivity.class);
-                intentSuggestions.putExtra("jsonString", jsonDBObject.toString());
+                intentSuggestions.putExtra(MainActivity.this.getResources().getString(R.string.jsonFullString), jsonDBObject.toString());
                 startActivity(intentSuggestions);
             }
 

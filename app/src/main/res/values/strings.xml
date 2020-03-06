@@ -14,6 +14,12 @@
     <string name="users_db_key">Users</string>
     <string name="users_db_json_url">https://android-assign-2-bp-reading.firebaseio.com/.json</string>
 
+    <string name="index">index</string>
+    <string name="jsonFullString">jsonFullString</string>
+    <string name="listOfUsers">listOfUsers</string>
+    <string name="jsonUsers">jsonUsers</string>
+    <string name="jsonReadings">jsonReadings</string>
+
     <string name="diastolic_error">Please enter proper a diastolic numeric value.</string>
     <string name="systolic_error">Please enter a proper systolic numeric value.</string>
     <string name="phno_error">Please enter a properly formatted unique Personal HealthCare Number.</string>

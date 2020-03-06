@@ -21,37 +21,38 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ListUsersActivity extends AppCompatActivity {
 
     private JSONObject jsonDBObject;
     private int listLength = 0;
+    private List<String> listOfUsers;
+    private JSONObject jsonUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         String dbResponse = "";
-        dbResponse = (String) getIntent().getExtras().get("jsonString");
+        dbResponse = (String) getIntent().getExtras().get(this.getResources().getString(R.string.jsonFullString));
         try {
             jsonDBObject = new JSONObject(dbResponse);
+            Log.i("JsonDBResponse", dbResponse);
         } catch (JSONException e) {
             Log.e("Error", e.toString());
         }
         populatePage();
 
-        ListView articleList = findViewById(R.id.list_of_user);
-        final String response = dbResponse;
-        articleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListView userListView = findViewById(R.id.list_of_user);
+        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
                 if (i >= 0 && i < listLength) {
-//                    Intent intentDetails = new Intent(Suggestions.this, Details.class);
-//                    intentDetails.putExtra("jsonString", response);
-//                    intentDetails.putExtra("index", i);
-//                    startActivity(intentDetails);
+                    Intent listReadingsIntent = new Intent(ListUsersActivity.this, ListReadingsActivity.class);
+                    listReadingsIntent.putExtra(ListUsersActivity.this.getResources().getString(R.string.jsonUsers), jsonUsers.toString());
+                    listReadingsIntent.putExtra(ListUsersActivity.this.getResources().getString(R.string.index), i);
+                    startActivity(listReadingsIntent);
                 }
             }
         });
@@ -60,20 +61,20 @@ public class ListUsersActivity extends AppCompatActivity {
 
     public void populatePage() {
         try {
-            JSONObject jsonUserObject = (JSONObject) jsonDBObject.get("Users");
-            JSONArray userJsonArray = jsonUserObject.names();
+            jsonUsers = (JSONObject) jsonDBObject.get(this.getResources().getString(R.string.users_db_key));
+            JSONArray userJsonArray = jsonUsers.names();
             assert userJsonArray != null;
-            // Log.i("Error", userJsonArray.toString());
+            Log.i("UserJsonArray", userJsonArray.toString());
             listLength = userJsonArray.length();
-            List<String> articleTitleList = new ArrayList<>(listLength);
+            listOfUsers = new ArrayList<>(listLength);
             for (int i = 0; i < userJsonArray.length(); i++) {
                 String user = userJsonArray.get(i).toString();
-                articleTitleList.add(user);
+                listOfUsers.add(user);
             }
-            ListView users = findViewById(R.id.list_of_user);
-            users.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, articleTitleList));
+            ListView usersListView = findViewById(R.id.list_of_user);
+            usersListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfUsers));
         } catch (JSONException e) {
-            Log.e("Article Conversion: ", e.toString());
+            Log.e("userListConversion: ", e.toString());
         }
     }
 
