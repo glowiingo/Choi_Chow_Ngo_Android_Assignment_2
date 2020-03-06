@@ -22,7 +22,9 @@ public class AddPatientActivity extends AppCompatActivity {
     Reading Reading;
     Float systolic;
     Float diastolic;
+    HypertensiveFragment hf;
     Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class AddPatientActivity extends AppCompatActivity {
 
                     try {
                         systolic = Float.parseFloat(systolic_string);
+                        status();
                     } catch (NumberFormatException e) {
                         Toast.makeText(
                                 getApplicationContext(),
@@ -125,5 +128,11 @@ public class AddPatientActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void status() {
+        if(systolic >= 180) {
+            hf = new HypertensiveFragment();
+            hf.show(getSupportFragmentManager(), "Dialog");
+        }
     }
 }
