@@ -30,6 +30,7 @@
     <string name="add_db_reading_succes">Information successfully added to the database.</string>
     <string name="cancel_alertDialog">Cancel</string>
 
+    <string name="ok">OK</string>
     <string name="delete_reading_button_label">Delete</string>
     <string name="edit_reading_button_label">Edit</string>
     

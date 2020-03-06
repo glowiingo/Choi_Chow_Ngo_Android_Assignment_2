@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -61,7 +62,6 @@ public class AddPatientActivity extends AppCompatActivity {
 
                     try {
                         systolic = Float.parseFloat(systolic_string);
-                        status();
                     } catch (NumberFormatException e) {
                         Toast.makeText(
                                 getApplicationContext(),
@@ -126,11 +126,13 @@ public class AddPatientActivity extends AppCompatActivity {
                             context.getResources().getString(R.string.systolic_error),
                             Toast.LENGTH_SHORT).show();
                 }
+
+                status();
             }
         });
     }
     public void status() {
-        if(systolic >= 180) {
+        if(systolic >= 180 || diastolic >= 120) {
             hf = new HypertensiveFragment();
             hf.show(getSupportFragmentManager(), "Dialog");
         }
