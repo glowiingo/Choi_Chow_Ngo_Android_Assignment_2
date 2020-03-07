@@ -73,9 +73,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 
     public void populatePage() {
         try {

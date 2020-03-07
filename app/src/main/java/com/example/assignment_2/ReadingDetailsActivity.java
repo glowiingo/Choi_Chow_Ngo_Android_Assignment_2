@@ -3,11 +3,13 @@ package com.example.assignment_2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,10 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.Objects;
 
 public class ReadingDetailsActivity extends AppCompatActivity {
 
+    private Activity context;
     // Define variables
     DatabaseReference ref;
 
@@ -44,6 +48,7 @@ public class ReadingDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_details);
+        context = this;
 
         final String user_db_key = this.getResources().getString(R.string.users_db_key);
         final String delete_tag = this.getResources().getString(R.string.delete_reading_button_label);
@@ -107,7 +112,7 @@ public class ReadingDetailsActivity extends AppCompatActivity {
                 readingQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snap: dataSnapshot.getChildren()) {
+                        for (DataSnapshot snap : dataSnapshot.getChildren()) {
                             snap.getRef().removeValue();
                         }
                     }
@@ -153,8 +158,30 @@ public class ReadingDetailsActivity extends AppCompatActivity {
             condition = jsonReading.getString(this.getResources().getString(R.string.condition_key));
             systolic = jsonReading.getString(this.getResources().getString(R.string.systolic_key));
             diastolic = jsonReading.getString(this.getResources().getString(R.string.diastolic_key));
+            setColor(condition);
         } catch (JSONException e) {
             Log.e("userListConversion: ", e.toString());
         }
     }
+
+    public void setColor(String condition) {
+        if (condition.equals("Hypertensive Crisis")) {
+            LinearLayout readingView = (LinearLayout) findViewById(R.id.reading_detail);
+            readingView.setBackgroundColor(getResources().getColor(R.color.colorHypertensiveBP));
+        } else if (condition.equals("High blood pressure (stage 2)")) {
+            LinearLayout readingView = (LinearLayout) findViewById(R.id.reading_detail);
+            readingView.setBackgroundColor(getResources().getColor(R.color.colorHigh2BP));
+        } else if (condition.equals("High blood pressure (stage 1)")) {
+            LinearLayout readingView = (LinearLayout) findViewById(R.id.reading_detail);
+            readingView.setBackgroundColor(getResources().getColor(R.color.colorHigh1BP));
+        } else if (condition.equals("Elevated")) {
+            LinearLayout readingView = (LinearLayout) findViewById(R.id.reading_detail);
+            readingView.setBackgroundColor(getResources().getColor(R.color.colorElevatedBP));
+        } else {
+            LinearLayout readingView = (LinearLayout) findViewById(R.id.reading_detail);
+            readingView.setBackgroundColor(getResources().getColor(R.color.colorNormalBP));
+        }
+    }
+
+
 }

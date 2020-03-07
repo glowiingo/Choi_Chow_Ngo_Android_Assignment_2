@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -167,5 +168,27 @@ public class AverageReadings extends AppCompatActivity {
         TextView dia_avg = (TextView) findViewById(R.id.diastolic_reading_average);
         String dia_avg_txt = this.getResources().getString(R.string.avg_diastolic) + total_avg_diastolic;
         dia_avg.setText(dia_avg_txt);
+
+        setColor(average_condition);
+    }
+
+
+    public void setColor(String condition) {
+        if (condition.equals("Hypertensive Crisis")) {
+            LinearLayout avg_layout = (LinearLayout) findViewById(R.id.average_readings_layout);
+            avg_layout.setBackgroundColor(getResources().getColor(R.color.colorHypertensiveBP));
+        } else if (condition.equals("High blood pressure (stage 2)")) {
+            LinearLayout avg_layout = (LinearLayout) findViewById(R.id.average_readings_layout);
+            avg_layout.setBackgroundColor(getResources().getColor(R.color.colorHigh2BP));
+        } else if (condition.equals("High blood pressure (stage 1)")) {
+            LinearLayout avg_layout = (LinearLayout) findViewById(R.id.average_readings_layout);
+            avg_layout.setBackgroundColor(getResources().getColor(R.color.colorHigh1BP));
+        } else if (condition.equals("Elevated")) {
+            LinearLayout avg_layout = (LinearLayout) findViewById(R.id.average_readings_layout);
+            avg_layout.setBackgroundColor(getResources().getColor(R.color.colorElevatedBP));
+        } else {
+            LinearLayout avg_layout = (LinearLayout) findViewById(R.id.average_readings_layout);
+            avg_layout.setBackgroundColor(getResources().getColor(R.color.colorNormalBP));
+        }
     }
 }

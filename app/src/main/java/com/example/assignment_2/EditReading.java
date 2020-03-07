@@ -114,7 +114,7 @@ public class EditReading extends AppCompatActivity {
     }
 
     public boolean status() {
-        if(systolic >= 180 || diastolic >= 120) {
+        if(systolic > 180 || diastolic > 120) {
             hf = new HypertensiveFragment();
             hf.show(getSupportFragmentManager(), this.getResources().getString(R.string.dialog));
             return true;
