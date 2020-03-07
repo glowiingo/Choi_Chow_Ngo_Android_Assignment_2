@@ -125,6 +125,9 @@ public class ReadingDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // go to new ui activity to input new data
+                Intent getMonthAverageIntent = new Intent(ReadingDetailsActivity.this, EditReading.class);
+                startActivity(getMonthAverageIntent);
+
 
             }
         });

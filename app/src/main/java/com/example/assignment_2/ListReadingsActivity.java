@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -41,6 +42,15 @@ public class ListReadingsActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Log.e("Error", e.toString());
         }
+
+        Button averageButton = (Button) findViewById(R.id.average_readings_button);
+        averageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getMonthAverageIntent = new Intent(ListReadingsActivity.this, AverageReadings.class);
+                startActivity(getMonthAverageIntent);
+            }
+        });
         populatePage();
 
         // Listener for ListReadings to display ReadingDetailsActivity
@@ -59,6 +69,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
 

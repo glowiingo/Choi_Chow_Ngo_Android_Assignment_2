@@ -27,7 +27,7 @@ public class ListUsersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_list_user);
         String dbResponse = "";
         dbResponse = (String) Objects.requireNonNull(getIntent().getExtras()).get(this.getResources().getString(R.string.jsonFullString));
         try {

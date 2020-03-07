@@ -11,6 +11,8 @@
     <string name="save_button_label">Save</string>
     <string name="list_view_button">List All Users</string>
     <string name="add_reading_button">Add New Reading</string>
+    <string name="average_readings_button">Average Readings of the Month</string>
+    <string name="back_button_label">Back</string>
     <string name="username">username</string>
 
     <string name="users_db_key">Users</string>
