@@ -48,6 +48,10 @@ public class ListReadingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent getMonthAverageIntent = new Intent(ListReadingsActivity.this, AverageReadings.class);
+                getMonthAverageIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.jsonReadings), userReadings.toString());
+                getMonthAverageIntent.putExtra(ListReadingsActivity.this.getResources().getString(R.string.username), userName);
+                Log.i("Username", userName);
+                Log.i("UserReadings: ", userReadings.toString());
                 startActivity(getMonthAverageIntent);
             }
         });

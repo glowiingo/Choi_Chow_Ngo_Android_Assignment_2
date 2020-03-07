@@ -8,6 +8,9 @@
     <string name="systolic_label">Systolic Reading:&#160;</string>
     <string name="diastolic_label">Diastolic Reading:&#160;</string>
     <string name="condition_label">Condition:&#160;</string>
+    <string name="avg_condition_label">Average Condition:&#160;</string>
+    <string name="avg_systolic">Average Systolic:&#160;</string>
+    <string name="avg_diastolic">Average Diastolic:&#160;</string>
     <string name="save_button_label">Save</string>
     <string name="list_view_button">List All Users</string>
     <string name="add_reading_button">Add New Reading</string>
@@ -47,4 +50,19 @@
     <string name="time_key">time</string>
 
     <string name="old">Old&#160;</string>
+
+    <string name="average_title">Month-to-date Average Readings for&#160;</string>
+
+    <string name="jan">Jan&#160;</string>
+    <string name="feb">Feb&#160;</string>
+    <string name="mar">Mar&#160;</string>
+    <string name="apr">Apr&#160;</string>
+    <string name="may">May&#160;</string>
+    <string name="jun">Jun&#160;</string>
+    <string name="jul">Jul&#160;</string>
+    <string name="aug">Aug&#160;</string>
+    <string name="sep">Sep&#160;</string>
+    <string name="oct">Oct&#160;</string>
+    <string name="nov">Nov&#160;</string>
+    <string name="dec">Dec&#160;</string>
 </resources>
