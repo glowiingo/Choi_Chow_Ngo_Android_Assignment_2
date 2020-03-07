@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Choi_Chow_Ngo_Assignment_2</string>
     <string name="db_main">android-assign-2-bp-reading</string>
-    <string name="date_label">Date: </string>
-    <string name="name_label">Name: </string>
-    <string name="time_label">Time: </string>
-    <string name="phno">Personal HealthCare No: </string>
-    <string name="systolic_label">Systolic Reading: </string>
-    <string name="diastolic_label">Diastolic Reading: </string>
-    <string name="condition_label">Condition: </string>
+    <string name="date_label">Date:&#160;</string>
+    <string name="name_label">Name:&#160;</string>
+    <string name="time_label">Time:&#160;</string>
+    <string name="phno">Personal HealthCare No:&#160;</string>
+    <string name="systolic_label">Systolic Reading:&#160;</string>
+    <string name="diastolic_label">Diastolic Reading:&#160;</string>
+    <string name="condition_label">Condition:&#160;</string>
     <string name="save_button_label">Save</string>
     <string name="list_view_button">List All Users</string>
     <string name="add_reading_button">Add New Reading</string>
@@ -23,11 +23,15 @@
     <string name="listOfUsers">listOfUsers</string>
     <string name="jsonUsers">jsonUsers</string>
     <string name="jsonReadings">jsonReadings</string>
+    <string name="readingID">readingID</string>
 
     <string name="diastolic_error">Please enter proper a diastolic numeric value.</string>
     <string name="systolic_error">Please enter a proper systolic numeric value.</string>
     <string name="phno_error">Please enter a properly formatted unique Personal HealthCare Number.</string>
     <string name="name_error">Please enter a properly formatted name.</string>
+
+    <string name="alert_message">Please call the hospital, your are in a state of Hypertensive Crisis!</string>
+    <string name="dialog">Dialog</string>
 
     <string name="add_db_reading_succes">Information successfully added to the database.</string>
     <string name="cancel_alertDialog">Cancel</string>
@@ -41,4 +45,6 @@
     <string name="diastolic_key">diastolic</string>
     <string name="systolic_key">systolic</string>
     <string name="time_key">time</string>
+
+    <string name="old">Old&#160;</string>
 </resources>

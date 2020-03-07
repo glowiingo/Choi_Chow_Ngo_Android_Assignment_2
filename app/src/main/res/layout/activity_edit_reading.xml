@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/systolic_label"/>
+        android:hint="@string/systolic_label"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/diastolic_display"
@@ -28,9 +29,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/diastolic_label"/>
+        android:hint="@string/diastolic_label"
+        android:autofillHints="" />
 
     <Button
+        android:id="@+id/edit_button_new_reading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/edit_reading_button_label">

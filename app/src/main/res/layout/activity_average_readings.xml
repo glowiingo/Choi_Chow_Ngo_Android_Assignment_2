@@ -34,10 +34,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/back_from_month"
-        android:text="@string/back_button_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
 </LinearLayout>

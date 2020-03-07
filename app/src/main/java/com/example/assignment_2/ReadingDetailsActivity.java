@@ -37,6 +37,8 @@ public class ReadingDetailsActivity extends AppCompatActivity {
     String condition = "";
     String systolic = "";
     String diastolic = "";
+    String systolicTextViewText = "";
+    String diastolicTextViewText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +84,11 @@ public class ReadingDetailsActivity extends AppCompatActivity {
         timeTextView.setText(timeTextViewText);
 
         TextView systolicTextView = (TextView) findViewById(R.id.systolicTextView);
-        String systolicTextViewText = this.getResources().getString(R.string.systolic_label) + systolic;
+        systolicTextViewText = this.getResources().getString(R.string.systolic_label) + systolic;
         systolicTextView.setText(systolicTextViewText);
 
         TextView diastolicTextView = (TextView) findViewById(R.id.diastolicTextView);
-        String diastolicTextViewText = this.getResources().getString(R.string.diastolic_label) + diastolic;
+        diastolicTextViewText = this.getResources().getString(R.string.diastolic_label) + diastolic;
         diastolicTextView.setText(diastolicTextViewText);
 
         TextView conditionTextView = (TextView) findViewById(R.id.conditionTextView);
@@ -94,7 +96,7 @@ public class ReadingDetailsActivity extends AppCompatActivity {
         conditionTextView.setText(conditionTextViewText);
 
         Button deleteButton = (Button) findViewById(R.id.reading_delete_button);
-        Button editButton = (Button) findViewById(R.id.reading_edit_button);
+        final Button editButton = (Button) findViewById(R.id.reading_edit_button);
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,10 +127,14 @@ public class ReadingDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // go to new ui activity to input new data
-                Intent getMonthAverageIntent = new Intent(ReadingDetailsActivity.this, EditReading.class);
-                startActivity(getMonthAverageIntent);
-
-
+                Intent editReadingIntent = new Intent(ReadingDetailsActivity.this, EditReading.class);
+                editReadingIntent.putExtra(ReadingDetailsActivity.this.getResources().getString(R.string.readingID), readingID);
+                editReadingIntent.putExtra(ReadingDetailsActivity.this.getResources().getString(R.string.username), userName);
+                editReadingIntent.putExtra(ReadingDetailsActivity.this.getResources().getString(R.string.systolic_key), systolic);
+                editReadingIntent.putExtra(ReadingDetailsActivity.this.getResources().getString(R.string.systolic_label), systolicTextViewText);
+                editReadingIntent.putExtra(ReadingDetailsActivity.this.getResources().getString(R.string.diastolic_key), diastolic);
+                editReadingIntent.putExtra(ReadingDetailsActivity.this.getResources().getString(R.string.diastolic_label), diastolicTextViewText);
+                startActivity(editReadingIntent);
             }
         });
     }

@@ -11,5 +11,6 @@ public class AverageReadings extends AppCompatActivity {
         setContentView(R.layout.activity_average_readings);
 
         // display average readings of the month from the first day of the month to current day
+        
     }
 }
